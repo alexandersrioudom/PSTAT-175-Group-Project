@@ -130,6 +130,18 @@ model1.3.coxzph
 
 #Conclusion
 
+summary(model1.3)
+
+#Conclusion
+#Original question:
+#Testing survival against whether the subject
+#had a transplant or not and then sub categorizing covariates
+#into internal or external factors, with external being
+#things like age and year and internal being surgery and
+#mscore(mismatch score)
+
+#From our summary function on our coxph model, we can see
+#that in comparison to not getting the transplant,
 
 
 
