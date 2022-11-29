@@ -64,7 +64,7 @@ heart.surv2.cox <- coxph(heart.surv2)
 
 #Covariates of interests to check against base model?
 
-#mscore, reject, surgery?
+#mscore, reject, surgery
 
 
 jasa$mscore
@@ -83,6 +83,7 @@ model2 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant
 
 model3 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
                 + heart.age2 + heart$year + jasa.surgery1)
+
 
 AIC(heart.surv2.cox)
 AIC(model1)
@@ -116,24 +117,29 @@ AIC(model1.3.2)
 #is (model1.3)
 
 
-summary(model1.3)
 
-
-#CHeck proportional hazards assumption
+#Check proportional hazards assumption
 
 model1.3.coxzph <- cox.zph(model1.3)
 
 model1.3.coxzph
 
-#plot3 <- plot(model1.3.coxzph)
+
 
 #It is found that the proportional hazards assumption is not 
 #violated, as the P-values are all above
-#the 0.05 level.
+#the 0.05 level, but to be sure, check schoenfeld residuals.
+
+plot(model1.3.coxzph)
+
+ggcoxzph(model1.3.coxzph)
+
+#We can see that from each individual schoenfeld residual,
+#there is no severe issue to be concerned about, as the lines
+#show no extreme deviation from flat.
+
 
 #4.)
-
-#Conclusion
 
 summary(model1.3)
 
@@ -143,25 +149,92 @@ summary(model1.3)
 #had a transplant or not and then sub categorizing covariates
 #into internal or external factors, with external being
 #things like age and year and internal being surgery and
-#mscore(mismatch score)
+#mscore(mismatch score), and rejection(although not included
+#in model)
 
 #From our summary function on our coxph model, we can see
-#that in comparison to not getting the transplant,
+#that in comparison to not getting the transplant:
 
+#Firstly, from the column marked z, gives a value
+#of -1.652, which indicates
+#that receiving a transplant is statistically significant.
+
+#The regression coefficient for getting the transplant, being
+#-0.80407, indicates that receiving a transplant has a 
+#lower risk of death than not receiving one.
+
+#The hazard ratio indicates that receiving 
+#the transplant reduces the hazard by a factor of 
+#0.446013, or 55.3987%, which is an indication 
+#of being positive for receiving a transplant versus not.
+
+#The confidence interval for this 
+#hazard ratio is (.1712, 1.162)
+
+#Then, in terms of whether internal or external factors
+#are of more significance, we can see that:
+
+#looking at the regression coefficients, the highest value
+#is the mscore(0.25945), meaning that having a heart mismatch
+#is a sign of a higher risk of death.
+#The next highest value is age(.008034), which is as well
+#associated with a higher risk of death, but not nearly
+#as much as having a heart mismatch.
+#Of the other covariates considered, their regression
+#coefficients are negative, meaning that these values are 
+#associated with having a lower risk of death,
+#with year being at (-0.052584) and surgery being(-1.139818).
+#This means that having prior bypass surgery is associated with
+#the best prognosis for having a lower risk of death, in terms
+#of the regression coefficients.
+#In terms of our original question, external factors do not
+#affect survivability as much as internal factors, as they have
+#the highest and lowest values for the regression coefficients.
+
+#Looking at the hazard ratios, the highest value is
+#mscore(1.296217), which is followed by age(1.008067).
+#Like before, this means that these covariates are 
+#associated with an increased and higher risk of death, and
+#mscore being more so.
+#As opposed to year(0.948775) and surgery(0.31987), with both
+#being associated with less and smaller risk of death,
+#and like before, surgery being the lowest value meaning
+#it is the most positively associated with a lower risk of 
+#death.
+
+#The hazard ratios for each of these covariates is as followed:
+#mscore
+#(.7608, 2.208)
+#age
+#(.9587, 1.060)
+#year
+#(.7000, 1.286)
+#surgery
+#(.1014, 1.010)
 
 
 
 
 #5.)
 
+#Let us now consider a gap model.
 
+heart.gap <- coxph(Surv(heart$stop-heart$start,heart$event)~
+                     heart$transplant)
+summary(heart.gap)
 
+#Lets now order the considered covariates
+#in the order of highest to lowest association
+#with risk of death
 
+heart.gap1 <- coxph(Surv(heart$stop-heart$start,heart$event)~
+                      heart$transplant+jasa.mscore1 + heart.age2
+                    +heart$year+jasa.surgery1)
+AIC(heart.gap1)
 
+summary(heart.gap1)
 
-
-
-
+#This model yields similar results.
 
 
 
