@@ -111,8 +111,6 @@ AIC(model1.3.2)
 #is (model1.3)
 
 
-summary(model1.3)
-
 
 #CHeck proportional hazards assumption
 
@@ -120,18 +118,22 @@ model1.3.coxzph <- cox.zph(model1.3)
 
 model1.3.coxzph
 
-#plot3 <- plot(model1.3.coxzph)
-
 #It is found that the proportional hazards assumption is not 
 #violated, as the P-values are all above
-#the 0.05 level.
+#the 0.05 level, but to be sure, check schoenfeld residuals.
+
+ggcoxzph(model1.3.coxzph)
+
+#We can see that from each individual schoenfeld residual,
+#there is severe issue to be concerned about, as the lines
+#show no extreme deviation from flat.
+
 
 #4.)
 
-#Conclusion
-
 summary(model1.3)
 
+#Conclusion
 #Original question:
 #Testing survival against whether the subject
 #had a transplant or not and then sub categorizing covariates
@@ -159,26 +161,15 @@ summary(model1.3)
 #The confidence interval for this 
 #hazard ratio is (.1712, 1.162 or 1)
 
-
 #Then, in terms of whether internal or external factors
 #are of more significance, we can see that 
 
 
 
 
+
+
 #5.)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
