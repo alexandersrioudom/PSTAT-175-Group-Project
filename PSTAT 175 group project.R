@@ -31,17 +31,11 @@ View(jasa1)
 
 heart.surv <- Surv(heart$start, heart$stop, heart$event)
 
-heart.surv.m <- surv_fit(heart.surv~1, data = heart)
+heart.surv.m <- surv_fit(heart.surv, data = heart)
 
 plot1 <- plot(heart.surv.m, conf.int = .95, col = "red")
 title("Kaplan Meier Estimate")
 
-
-#heart.surv2 <- Surv(heart$start, heart$stop, heart$event)~heart$transplant
-
-#heart.surv.m2 <- surv_fit(heart.surv2, data = heart)
-
-#plot2 <- plot(heart.surv.m2)
 
 heart.age <- heart[,4]
 
@@ -63,11 +57,40 @@ heart.surv2.cox <- coxph(heart.surv2)
 
 #Covariates of interests to check against base model?
 
-#mscore, mismatch, reject, surgery?
+#mscore, reject, surgery?
+
+
+jasa$mscore
+
+jasa.mscore1 <- jasa$mscore %>% c(rep(NA,69))
+
+jasa.reject1 <- jasa$reject %>% c(rep(NA, 69))
+
+jasa.surgery1 <- jasa$surgery %>% c(rep(NA,69))
+
+model1 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
++ heart.age2 + heart$year + jasa.mscore1)
+
+model2 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
++ heart.age2 + heart$year + jasa.reject1)
+
+model3 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
+                + heart.age2 + heart$year + jasa.surgery1)
 
 AIC(heart.surv2.cox)
+AIC(model1)
+AIC(model2)
+AIC(model3)
 
-model1 <- 
+
+
+
+
+
+
+
+
+
 
 
 
