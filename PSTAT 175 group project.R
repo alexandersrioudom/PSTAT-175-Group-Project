@@ -113,6 +113,20 @@ AIC(model1.3.2)
 #Best fitting model with considered variables of interest
 #is (model1.3)
 
+summary(model1.3.2)
+
+
+#CHeck proportional hazards assumption
+
+model1.3.2.coxzph <- cox.zph(model1.3.2)
+
+model1.3.2.coxzph
+
+plot3 <- plot(model1.3.2.coxzph)
+
+#It is found that the proportional hazards assumption is not 
+#violated, as the P-values are all above
+#the 0.05 level.
 
 
 
