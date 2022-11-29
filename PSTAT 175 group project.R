@@ -82,6 +82,32 @@ AIC(model1)
 AIC(model2)
 AIC(model3)
 
+#Lowest AIC is model1(230.2854)
+
+model1.2 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
+                  + heart.age2 + heart$year + jasa.mscore1
+                  + jasa.reject1)
+
+  
+model1.3 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
+                  + heart.age2 + heart$year + jasa.mscore1
+                  + jasa.surgery1)
+
+AIC(model1.2)
+AIC(model1.3)
+
+#AIC(model1.3) = 227.5847
+
+model1.3.2 <- coxph(Surv(heart$start, heart$stop, heart$event)~heart$transplant 
+                    + heart.age2 + heart$year + jasa.mscore1
+                    + jasa.surgery1 + jasa.reject1)
+
+AIC(model1.3.2)
+#AIC(model1.3.2) = 228.4591
+
+#Best fitting model with considered variables of interest
+#is (model1.3)
+
 
 
 
