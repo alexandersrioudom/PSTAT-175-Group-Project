@@ -132,20 +132,36 @@ model1.3.coxzph
 
 summary(model1.3)
 
-#Conclusion
 #Original question:
 #Testing survival against whether the subject
 #had a transplant or not and then sub categorizing covariates
 #into internal or external factors, with external being
 #things like age and year and internal being surgery and
-#mscore(mismatch score)
+#mscore(mismatch score), and rejection(although not included
+#in model)
 
 #From our summary function on our coxph model, we can see
-#that in comparison to not getting the transplant,
-#the regression coefficient for getting the transplant, being
-#-0.80407, indicates that receiving a transplant has a 
-#lower risk of death than not, for the data.
+#that in comparison to not getting the transplant:
 
+#Firstly, from the column marked z, gives a value
+#of -1.652, which indicates
+#that receiving a transplant is statistically significant.
+
+#The regression coefficient for getting the transplant, being
+#-0.80407, indicates that receiving a transplant has a 
+#lower risk of death than not receiving one.
+
+#The hazard ratio indicates that receiving 
+#the transplant reduces the hazard by a factor of 
+#0.446013, or 55.3987%, which is an indication 
+#of being positive for receiving a transplant versus not.
+
+#The confidence interval for this 
+#hazard ratio is (.1712, 1.162 or 1)
+
+
+#Then, in terms of whether internal or external factors
+#are of more significance, we can see that 
 
 
 
