@@ -65,7 +65,9 @@ heart.surv2.cox <- coxph(heart.surv2)
 
 #mscore, mismatch, reject, surgery?
 
+AIC(heart.surv2.cox)
 
+model1 <- 
 
 
 
