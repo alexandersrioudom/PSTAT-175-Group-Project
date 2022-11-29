@@ -121,6 +121,11 @@ model1.3.2.coxzph
 
 plot3 <- plot(model1.3.2.coxzph)
 
+#It is found that the proportional hazards assumption is not 
+#violated, as the P-values are all above
+#the 0.05 level.
+
+
 
 
 
