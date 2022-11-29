@@ -25,9 +25,9 @@ library(survival)
 library(survminer)
 library(dplyr)
 
-View(heart)
-View(jasa)
-View(jasa1)
+heart[c(1:7),]
+jasa[c(1:7),]
+jasa1[c(1:7),]
 
 heart.surv <- Surv(heart$start, heart$stop, heart$event)
 
