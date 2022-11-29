@@ -142,6 +142,9 @@ summary(model1.3)
 
 #From our summary function on our coxph model, we can see
 #that in comparison to not getting the transplant,
+#the regression coefficient for getting the transplant, being
+#-0.80407, indicates that receiving a transplant has a 
+#lower risk of death than not, for the data.
 
 
 
