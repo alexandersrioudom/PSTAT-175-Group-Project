@@ -1,3 +1,8 @@
+
+#You guys can take a look at the code and let me know if there are any changes or suggestions you think that will make the project better
+#So for the base model  I decided to see the effect of age and years on transplant just as a place to start. And then continued the project from there.
+
+
 #View(heart)
 
 #external vs internal for transplant
