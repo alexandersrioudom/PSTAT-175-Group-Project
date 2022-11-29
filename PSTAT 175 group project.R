@@ -36,6 +36,8 @@ heart.surv.m <- surv_fit(heart.surv, data = heart)
 plot1 <- plot(heart.surv.m, conf.int = .95, col = "red")
 title("Kaplan Meier Estimate")
 
+#Base model
+#Test the effects of the interesting covariates on transplant
 
 heart.age <- heart[,4]
 
@@ -108,7 +110,16 @@ AIC(model1.3.2)
 #Best fitting model with considered variables of interest
 #is (model1.3)
 
+summary(model1.3.2)
 
+
+#CHeck proportional hazards assumption
+
+model1.3.2.coxzph <- cox.zph(model1.3.2)
+
+model1.3.2.coxzph
+
+plot3 <- plot(model1.3.2.coxzph)
 
 
 
